@@ -56,3 +56,14 @@ const nth = (list, element) => {
   // no early return means we reached null & element is not found
   return undefined;
 };
+
+const recursiveNth = (list, element, currentIndex = 0) => {
+  // catchers for recursive calls
+  if (list === null) {
+    return undefined;
+  } else if (list.value === element) {
+    return currentIndex;
+  }
+
+  return recursiveNth(list.rest, element, currentIndex + 1);
+};
