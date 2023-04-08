@@ -42,17 +42,3 @@ class Group {
     }
   }
 }
-
-Group.prototype[Symbol.iterator] = function () {
-  let index = 0;
-  let arr = this.values;
-
-  return {
-    next: function () {
-      return {
-        done: !(index in Array.from(arr.keys())),
-        value: arr[index++],
-      };
-    },
-  };
-};
