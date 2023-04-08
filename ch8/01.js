@@ -15,9 +15,18 @@ class MultiplicatorUnitFailure extends Error {}
 const primitiveMultiply = (a, b) => {
   // can only choose from range(0, 4) -> picking 0 is a 1/5 chance -> 20%
   // keeps trying until it succeeds
-  while (Math.floor(Math.random() * 5) !== 0) {
-    throw new MultiplicatorUnitFailure();
+  try {
+    if (Math.floor(Math.random() * 5) !== 0) {
+      throw new MultiplicatorUnitFailure();
+    }
+  } catch (error) {
+    if (error instanceof MultiplicatorUnitFailure) {
+      console.log('Error: MultiplicatorUnitFailure');
+      primitiveMultiply(a, b);
+    }
   }
 
   return a * b;
 };
+
+console.log(primitiveMultiply(2, 2));
