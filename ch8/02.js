@@ -9,7 +9,7 @@ function returned normally or threw an exception.
 */
 
 const box = {
-  locked: true,
+  locked: false,
   unlock() {
     this.locked = false;
   },
@@ -23,9 +23,11 @@ const box = {
   },
 };
 function withBoxUnlocked(body) {
+  let lockedFlag = false;
   // bonus points, calls unlock() only if the box is locked, otherwise, box is already unlocked
   if (box.locked) {
     box.unlock();
+    lockedFlag = true; // the box was locked when we received it
   }
   // Your code here.
   try {
@@ -33,7 +35,10 @@ function withBoxUnlocked(body) {
   } catch (error) {
     console.log(error);
   } finally {
-    box.lock();
+    // if it was not locked when we received it, then don't lock it anymore
+    if (lockedFlag === false) {
+      box.lock();
+    }
   }
 }
 
