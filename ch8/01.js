@@ -28,5 +28,3 @@ const primitiveMultiply = (a, b) => {
 
   return a * b;
 };
-
-console.log(primitiveMultiply(2, 2));
