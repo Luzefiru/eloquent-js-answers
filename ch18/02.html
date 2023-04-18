@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>JavaScript Workbench</title>
+    <script defer src="./02.js"></script>
+  </head>
+  <body>
+    <div class="interface">
+      <h1>Function Body Executor</h1>
+      <textarea
+        rows="10"
+        placeholder="Write your JavaScript code here"
+      ></textarea>
+      <button
+        type="submit"
+        onclick="(() => {document.querySelector('.display').textContent = String(call(makeFunction(document.querySelector('textarea').value)))})()"
+      >
+        Evaluate Code
+      </button>
+      <div class="display">Your results will display here</div>
+    </div>
+  </body>
+  <style>
+    *,
+    ::after,
+    ::before {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body,
+    html {
+      height: 100%;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+    }
+
+    .interface {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      gap: 16px;
+    }
+
+    .display {
+      border: 1px black solid;
+      min-height: fit-content;
+    }
+
+    button {
+      height: 36px;
+    }
+  </style>
+</html>
